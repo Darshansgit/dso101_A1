@@ -3,18 +3,17 @@ services:
   - type: web
     name: frontend
     runtime: docker
-    dockerfile: ./frontend/Dockerfile
+    dockerfile: https://github.com/Darshansgit/dso101_A1/blob/main/frontend/Dockerfile
     port: 3000
     envVars:
-      - key: REACT_APP_API_URL  # Replace with your frontend's API env var
+      - key: REACT_APP_API_URL  
         syncValue: https://backend.onrender.com  # Auto-generated URL
     healthCheckPath: /  # Basic health check (adjust if needed)
 
-  # Backend Service (Node.js)
   - type: web
     name: backend
     runtime: docker
-    dockerfile: ./backend/Dockerfile
+    dockerfile: https://github.com/Darshansgit/dso101_A1/blob/main/backend/Dockerfile
     port: 3001
     envVars:
       - key: PORT
@@ -34,11 +33,9 @@ services:
           name: todolist_db
           property: password
 
-  # MySQL Database (Managed by Render)
   - type: mysql
     name: todolist_db
-    plan: free  # Or "starter" for production
+    plan: free  
     databaseName: todolist
     user: root
-    password: Rafa@123  # Strongly recommend using Render's auto-generated password instead
-
+    password: Rafa@123 
