@@ -1,0 +1,44 @@
+services:
+  # Frontend Service (React/Next.js/Vue)
+  - type: web
+    name: frontend
+    runtime: docker
+    dockerfile: ./frontend/Dockerfile
+    port: 3000
+    envVars:
+      - key: REACT_APP_API_URL  # Replace with your frontend's API env var
+        syncValue: https://backend.onrender.com  # Auto-generated URL
+    healthCheckPath: /  # Basic health check (adjust if needed)
+
+  # Backend Service (Node.js)
+  - type: web
+    name: backend
+    runtime: docker
+    dockerfile: ./backend/Dockerfile
+    port: 3001
+    envVars:
+      - key: PORT
+        value: 3001
+      - key: DB_HOST
+        fromDatabase:
+          name: todolist_db
+          property: hostname
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: todolist
+      - key: DB_USER
+        value: root
+      - key: DB_PASS
+        fromDatabase:
+          name: todolist_db
+          property: password
+
+  # MySQL Database (Managed by Render)
+  - type: mysql
+    name: todolist_db
+    plan: free  # Or "starter" for production
+    databaseName: todolist
+    user: root
+    password: Rafa@123  # Strongly recommend using Render's auto-generated password instead
+
