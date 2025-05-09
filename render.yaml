@@ -3,18 +3,14 @@ services:
   - type: web
     name: frontend
     runtime: docker
-    dockerfile: frontend/Dockerfile
-    port: 3000
-    envVars:
-      - key: REACT_APP_API_URL  
-        syncValue: https://backend.onrender.com  # Auto-generated URL
-    healthCheckPath: /  # Basic health check (adjust if needed)
-
+    rootDir: frontend
+    dockerfilePath: ./Dockerfile
+  
   - type: web
     name: backend
     runtime: docker
-    dockerfile: backend/Dockerfile
-    port: 3001
+    rootDir: backend
+    dockerfile: ./Dockerfile
     envVars:
       - key: PORT
         value: 3001
