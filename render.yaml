@@ -33,7 +33,7 @@ services:
           name: todolist_db
           property: password
 
-  - type: mysql
+  - type: postgres
     name: todolist_db
     plan: free  
     databaseName: todolist
