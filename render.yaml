@@ -3,7 +3,7 @@ services:
   - type: web
     name: frontend
     runtime: docker
-    dockerfile: https://github.com/Darshansgit/dso101_A1/blob/main/frontend/Dockerfile
+    dockerfile: ./frontend/Dockerfile
     port: 3000
     envVars:
       - key: REACT_APP_API_URL  
@@ -13,7 +13,7 @@ services:
   - type: web
     name: backend
     runtime: docker
-    dockerfile: https://github.com/Darshansgit/dso101_A1/blob/main/backend/Dockerfile
+    dockerfile: ./backend/Dockerfile
     port: 3001
     envVars:
       - key: PORT
@@ -32,7 +32,6 @@ services:
         fromDatabase:
           name: todolist_db
           property: password
-
 
   - type: pserv
     name: mysql
