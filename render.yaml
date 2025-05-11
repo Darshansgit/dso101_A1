@@ -2,7 +2,7 @@ services:
   # Frontend Service (React/Next.js/Vue)
   - type: web
     name: frontend
-    rootDir: frontend
+    dockerfilePath: frontend/Dockerfile
     runtime: docker
     envVars:
       - key: PORT
@@ -11,7 +11,7 @@ services:
 
   # Backend Service
   - type: web
-    rootDir: backend
+    dockerfilePath: backend/Dockerfile
     name: backend
     runtime: docker
     envVars:
