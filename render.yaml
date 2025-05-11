@@ -29,7 +29,7 @@ services:
 
   - type: pserv
     name: todolist_db
-    plan: standard
+    plan: free
     env: docker
     autoDeploy: false
     disk:
