@@ -4,13 +4,13 @@ services:
     name: frontend
     runtime: docker
     rootDir: frontend
-    dockerfilePath: ./Dockerfile
+    # dockerfilePath: ./Dockerfile
   
   - type: web
     name: backend
     runtime: docker
     rootDir: backend
-    dockerfile: ./Dockerfile
+    # dockerfile: ./Dockerfile
     envVars:
       - key: PORT
         value: 3001
