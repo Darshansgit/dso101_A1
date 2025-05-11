@@ -32,26 +32,21 @@ services:
         value: Rafa@123  # Using your specified password
 
   # Database Service
-  - type: pserv
+- type: pserv
     name: todolist_db
     plan: standard
-    env: docker
-    image: mysql:8.0.21
+    docker:
+      image: mysql:8.0.21
     disk:
       name: mysql_data
       mountPath: /var/lib/mysql
       sizeGB: 10
     envVars:
       - key: MYSQL_ROOT_PASSWORD
-        value: Rafa@123  # From your compose file
+        value: Rafa@123
       - key: MYSQL_DATABASE
-        value: todolist  # From your backend environment vars
+        value: todolist
       - key: MYSQL_USER
-        value: root  # Added for consistency
+        value: root
       - key: MYSQL_PASSWORD
-        value: Rafa@123  # Added for non-root connections
-    healthCheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pRafa@123"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
+        value: Rafa@123
