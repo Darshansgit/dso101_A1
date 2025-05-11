@@ -31,22 +31,26 @@ services:
       - key: DB_PASS
         value: Rafa@123  # Using your specified password
 
-  - type: pserv  # This is correct for persistent services like databases
+  - type: pserv
     name: todolist_db
     plan: standard
-    runtime: docker  # Required for custom images
-    docker:
-      image: mysql:8.0.21  # Must be under 'docker' field
+    env: docker
+    autoDeploy: false
     disk:
       name: mysql_data
       mountPath: /var/lib/mysql
       sizeGB: 10
     envVars:
-      - key: MYSQL_ROOT_PASSWORD
-        value: Rafa@123
-      - key: MYSQL_DATABASE
-        value: todolist
-      - key: MYSQL_USER
-        value: root
-      - key: MYSQL_PASSWORD
-        value: Rafa@123
+    - fromGroup: mysql_config
+
+envVarGroups:
+- name: mysql_config
+  envVars:
+  - key: MYSQL_DATABASE
+    value: todolist
+  - key: MYSQL_USER
+    value: root
+  - key: MYSQL_PASSWORD
+    value: Rafa@123
+  - key: MYSQL_ROOT_PASSWORD
+    value: Rafa@123
