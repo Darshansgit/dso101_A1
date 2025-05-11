@@ -15,31 +15,14 @@ services:
       - key: PORT
         value: 3001
       - key: DB_HOST
-        fromDatabase:
-          name: todolist_db
-          property: host
+        value: "sql12.freesqldatabase.com"
       - key: DB_PORT
         value: 3306 
       - key: DB_NAME
-        value: todolist
+        value: "sql12778244"
       - key: DB_USER
-        value: root 
+        value: "sql12778244"
       - key: DB_PASS
-        value: Rafa@123  
-
-  - type: web
-    name: mysql_temp
-    runtime: docker
-    docker:
-      image: mysql:8.0.21
-    envVars:
-      - key: MYSQL_ROOT_PASSWORD
-        value: Rafa@123
-      - key: MYSQL_DATABASE 
-        value: todolist 
-      - key: MYSQL_USER
-        value: root
-      - key: MYSQL_PASSWORD
-        value: Rafa@123
+        value: "hKtrjLuurP"
 
 
