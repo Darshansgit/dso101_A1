@@ -35,7 +35,6 @@ services:
     disk:
       name: mysql_data
       mountPath: /var/lib/mysql
-      sizeGB: Free
     envVars:
     - fromGroup: mysql_config
 
