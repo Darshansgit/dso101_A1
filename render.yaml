@@ -32,9 +32,6 @@ services:
     plan: free
     env: docker
     autoDeploy: false
-    disk:
-      name: mysql_data
-      mountPath: /var/lib/mysql
     envVars:
     - fromGroup: mysql_config
 
