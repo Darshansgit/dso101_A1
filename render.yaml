@@ -3,50 +3,55 @@ services:
   - type: web
     name: frontend
     runtime: docker
-    rootDir: frontend
-    # dockerfilePath: ./Dockerfile
-  
+    buildCommand: docker build -t frontend ./frontend
+    startCommand: docker run -p 3000:3000 frontend
+    envVars:
+      - key: PORT
+        value: 3000
+
+  # Backend Service
   - type: web
     name: backend
     runtime: docker
-    rootDir: backend
-    # dockerfile: ./Dockerfile
+    buildCommand: docker build -t backend ./backend
+    startCommand: docker run -p 3001:3001 backend
     envVars:
       - key: PORT
         value: 3001
       - key: DB_HOST
         fromDatabase:
           name: todolist_db
-          property: hostname
+          property: host
       - key: DB_PORT
-        value: 3306
+        value: 3306  # Using static value since MySQL default port is 3306
       - key: DB_NAME
         value: todolist
       - key: DB_USER
-        value: root
+        value: root  # Using your specified root user
       - key: DB_PASS
-        fromDatabase:
-          name: todolist_db
-          property: password
+        value: Rafa@123  # Using your specified password
 
+  # Database Service
   - type: pserv
-    name: mysql
+    name: todolist_db
     plan: standard
     env: docker
-    autoDeploy: false
+    image: mysql:8.0.21
     disk:
-      name: mysql
+      name: mysql_data
       mountPath: /var/lib/mysql
       sizeGB: 10
     envVars:
-    - fromGroup: mysql
-
-envVarGroups:
-- name: mysql
-  envVars:
-  - key: MYSQL_DATABASE
-    value: mysql
-  - key: MYSQL_USER
-    value: root 
-  - key: MYSQL_ROOT_PASSWORD
-    value: Rafa@123
+      - key: MYSQL_ROOT_PASSWORD
+        value: Rafa@123  # From your compose file
+      - key: MYSQL_DATABASE
+        value: todolist  # From your backend environment vars
+      - key: MYSQL_USER
+        value: root  # Added for consistency
+      - key: MYSQL_PASSWORD
+        value: Rafa@123  # Added for non-root connections
+    healthCheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pRafa@123"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
