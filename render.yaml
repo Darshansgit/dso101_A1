@@ -32,20 +32,20 @@ services:
         value: Rafa@123  # Using your specified password
 
   - type: pserv
-      name: todolist_db
-      plan: standard
-      docker:
-        image: mysql:8.0.21
-      disk:
-        name: mysql_data
-        mountPath: /var/lib/mysql
-        sizeGB: 10
-      envVars:
-        - key: MYSQL_ROOT_PASSWORD
-          value: Rafa@123
-        - key: MYSQL_DATABASE
-          value: todolist
-        - key: MYSQL_USER
-          value: root
-        - key: MYSQL_PASSWORD
-          value: Rafa@123
+    name: todolist_db
+    plan: standard
+    docker:
+      image: mysql:8.0.21
+    disk:
+      name: mysql_data
+      mountPath: /var/lib/mysql
+      sizeGB: 10
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: Rafa@123
+      - key: MYSQL_DATABASE
+        value: todolist
+      - key: MYSQL_USER
+        value: root
+      - key: MYSQL_PASSWORD
+        value: Rafa@123
