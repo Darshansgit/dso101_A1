@@ -31,11 +31,12 @@ services:
       - key: DB_PASS
         value: Rafa@123  # Using your specified password
 
-  - type: pserv
+  - type: pserv  # This is correct for persistent services like databases
     name: todolist_db
     plan: standard
+    runtime: docker  # Required for custom images
     docker:
-      image: mysql:8.0.21
+      image: mysql:8.0.21  # Must be under 'docker' field
     disk:
       name: mysql_data
       mountPath: /var/lib/mysql
