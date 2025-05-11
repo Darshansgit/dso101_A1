@@ -6,6 +6,7 @@ services:
     envVars:
       - key: PORT
         value: 3000
+    plan: free
 
   # Backend Service
   - type: web
@@ -24,5 +25,6 @@ services:
         value: "sql12778244"
       - key: DB_PASS
         value: "hKtrjLuurP"
+    plan: free
 
 
