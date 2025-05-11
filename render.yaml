@@ -19,30 +19,26 @@ services:
           name: todolist_db
           property: host
       - key: DB_PORT
-        value: 3306  # Using static value since MySQL default port is 3306
+        value: 3306 
       - key: DB_NAME
         value: todolist
       - key: DB_USER
-        value: root  # Using your specified root user
+        value: root 
       - key: DB_PASS
-        value: Rafa@123  # Using your specified password
+        value: Rafa@123  
 
-  - type: pserv
-    name: todolist_db
-    plan: free
-    env: docker
-    autoDeploy: false
+  - type: web
+    name: mysql_temp
+    runtime: docker
+    image: mysql:8.0.21
     envVars:
-    - fromGroup: mysql_config
+      - key: MYSQL_ROOT_PASSWORD
+        value: Rafa@123
+      - key: MYSQL_DATABASE 
+        value: todolist 
+      - key: MYSQL_USER
+        value: root
+      - key: MYSQL_PASSWORD
+        value: Rafa@123
 
-envVarGroups:
-- name: mysql_config
-  envVars:
-  - key: MYSQL_DATABASE
-    value: todolist
-  - key: MYSQL_USER
-    value: root
-  - key: MYSQL_PASSWORD
-    value: Rafa@123
-  - key: MYSQL_ROOT_PASSWORD
-    value: Rafa@123
+
