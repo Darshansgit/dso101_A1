@@ -1,32 +1,34 @@
 services:
   # Frontend Service (React/Next.js/Vue)
-  - type: web
-    name: frontend
-    dockerfilePath: frontend/Dockerfile
-    runtime: docker
-    envVars:
-      - key: PORT
-        value: 3000
-    plan: free
+- type: web
+  name: frontend
+  runtime: docker
+  repo: https://github.com/Darshansgit/dso101_A1/frontend
+  plan: free
+  envVars:
+  - key: PORT
+    sync: 3000
+  region: oregon
+  dockerContext: .
+  dockerfilePath: frontend/Dockerfile
 
-  # Backend Service
-  - type: web
-    dockerfilePath: backend/Dockerfile
-    name: backend
-    runtime: docker
-    envVars:
-      - key: PORT
-        value: 3001
-      - key: DB_HOST
-        value: "sql12.freesqldatabase.com"
-      - key: DB_PORT
-        value: 3306 
-      - key: DB_NAME
-        value: "sql12778244"
-      - key: DB_USER
-        value: "sql12778244"
-      - key: DB_PASS
-        value: "hKtrjLuurP"
-    plan: free
+# - type: web
+#   dockerfilePath: backend/Dockerfile
+#   name: backend
+#   runtime: docker
+#   envVars:
+#     - key: PORT
+#       value: 3001
+#     - key: DB_HOST
+#       value: "sql12.freesqldatabase.com"
+#     - key: DB_PORT
+#       value: 3306 
+#     - key: DB_NAME
+#       value: "sql12778244"
+#     - key: DB_USER
+#       value: "sql12778244"
+#     - key: DB_PASS
+#       value: "hKtrjLuurP"
+#   plan: free
 
 
